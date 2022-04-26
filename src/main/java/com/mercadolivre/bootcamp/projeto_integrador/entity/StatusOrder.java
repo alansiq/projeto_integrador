@@ -12,4 +12,5 @@ public enum StatusOrder {
     CLOSED("Fechado");
 
     private String value;
+
 }
