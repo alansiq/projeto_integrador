@@ -44,7 +44,7 @@ public class SectionServiceTest {
                 .capacity(new BigDecimal(100))
                 .currentTemperature(10)
                 .category(Category.REFRIGERATED)
-                .warehouseId("1").build();
+                .warehouseId(5L).build();
 
         Section section = Section.builder().build();
 
@@ -83,11 +83,11 @@ public class SectionServiceTest {
 
         //Arrange
         Section section = Section.builder()
-                .sectionId("1")
+                .sectionId(1l)
                 .capacity(new BigDecimal(100))
                 .category(Category.REFRIGERATED)
                 .currentTemperature(15)
-                .warehouseId("1")
+                .warehouseId(1L)
                 .listInBoundOrder(new ArrayList<>()).build();
 
         Optional<Section> sectionOptional = Optional.of(section);
@@ -109,7 +109,7 @@ public class SectionServiceTest {
                 .capacity(new BigDecimal(100))
                 .currentTemperature(10)
                 .category(Category.REFRIGERATED)
-                .warehouseId("1").build();
+                .warehouseId(1L).build();
 
         Section section = Section.builder().build();
         Optional<Section> sectionOptional = Optional.of(section);
@@ -138,7 +138,7 @@ public class SectionServiceTest {
         //Assert
         Assertions.assertThrows(SectionNotFound.class,
                 () -> {
-                    sectionService.getSectionById("1000000");
+                    sectionService.getSectionById(1000000L);
                 });
     }
     @Test
@@ -167,26 +167,10 @@ public class SectionServiceTest {
 
         //Act
         Mockito.when(sectionRepository.findById(any())).thenReturn(sectionOptional);
-        Boolean isValid = sectionService.isSectionValid("1");
+        boolean isValid = sectionService.isSectionValid(5L);
 
         //Assert
         Assertions.assertTrue(isValid);
-
-    }
-
-    @Test
-    void shouldReturnFalseWhenCallMethodIsValidSectionAndIdIsBlankOrEmpty() {
-
-        //Arrange
-        Section section = Section.builder().build();
-
-        //Act
-        Boolean isNotBlank = sectionService.isSectionValid("   ");
-        Boolean isNotEmpty = sectionService.isSectionValid("");
-
-        //Assert
-        Assertions.assertFalse(isNotEmpty);
-        Assertions.assertFalse(isNotBlank);
 
     }
 
@@ -223,14 +207,14 @@ public class SectionServiceTest {
     @Test
     public void shouldDeleteSection() {
         // Arrange
-        Section section = Section.builder().sectionId("100").build();
+        Section section = Section.builder().sectionId(100l).build();
 
         // Act
         doNothing().when(sectionRepository).deleteById(any());
 
         // Assert
         assertDoesNotThrow(() -> {
-            sectionService.deleteSection("100");
+            sectionService.deleteSection(100L);
         });
     }
 
@@ -245,7 +229,7 @@ public class SectionServiceTest {
 
         //Act
         Mockito.when(sectionRepository.findById(any())).thenReturn(sectionOptional);
-        Boolean correspondsProductType = sectionService.sectionCorrespondsProductType(any(), batchStock1.getProduct().getCategory());
+        boolean correspondsProductType = sectionService.sectionCorrespondsProductType(any(), batchStock1.getProduct().getCategory());
 
         //Asserts
         Assertions.assertTrue(correspondsProductType);
@@ -262,7 +246,7 @@ public class SectionServiceTest {
 
         //Act
         Mockito.when(sectionRepository.findById(any())).thenReturn(sectionOptional);
-        Boolean correspondsProductType = sectionService.sectionCorrespondsProductType(any(), batchStock1.getProduct().getCategory());
+        boolean correspondsProductType = sectionService.sectionCorrespondsProductType(any(), batchStock1.getProduct().getCategory());
 
         //Asserts
         Assertions.assertFalse(correspondsProductType);

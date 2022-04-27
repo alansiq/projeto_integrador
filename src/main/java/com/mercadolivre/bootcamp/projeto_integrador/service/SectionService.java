@@ -10,10 +10,10 @@ import java.util.List;
 public interface SectionService {
     Section addSection(NewSectionDTO sectionDTO);
     List<Section> getAllSection();
-    Section getSectionById(String sectionId);
-    void deleteSection(String sectionId);
+    Section getSectionById(Long sectionId);
+    void deleteSection(Long sectionId);
     Section updateSection(Section section);
-    boolean isSectionValid(String sectionID);
-    boolean availableSectionCapacity(BigDecimal totalVolume, String sectionId);
-    boolean sectionCorrespondsProductType(String sectionId, Category category);
+    boolean isSectionValid(Long sectionID);
+    boolean availableSectionCapacity(BigDecimal totalVolume, Long sectionId);
+    boolean sectionCorrespondsProductType(Long sectionId, Category category);
 }

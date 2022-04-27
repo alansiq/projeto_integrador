@@ -19,6 +19,6 @@ import javax.persistence.Id;
 public class Salesman {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private String salesmanId;
+    private Long id;
     private String fullName;
 }

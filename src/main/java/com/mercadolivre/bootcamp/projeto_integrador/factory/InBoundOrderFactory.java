@@ -42,9 +42,9 @@ public class InBoundOrderFactory {
            services. Caso um deles não seja valido, a inboundOrder é inválida e o método retorna false.
          */
 
-        String sectionId = newInBoundOrderDTO.getSectionDTO().getSectionId();
-        String warehouseId = newInBoundOrderDTO.getSectionDTO().getWarehouseId();
-        String representativeId = newInBoundOrderDTO.getRepresentativeId();
+        Long sectionId = newInBoundOrderDTO.getSectionDTO().getSectionId();
+        Long warehouseId = newInBoundOrderDTO.getSectionDTO().getWarehouseId();
+        Long representativeId = newInBoundOrderDTO.getRepresentativeId();
 
         boolean isSectionValid = sectionService.isSectionValid(sectionId);
         boolean isWarehouseValid = warehouseService.isValidWarehouse(warehouseId);
@@ -54,7 +54,7 @@ public class InBoundOrderFactory {
         return isSectionValid && isWarehouseValid && isRepresentativeAssociatedWithSection;
     }
 
-    private boolean isBatchStockValid(BatchStock batchStock, String sectionId) {
+    private boolean isBatchStockValid(BatchStock batchStock, Long sectionId) {
         Category productCategory = batchStock.getProduct().getCategory();
         BigDecimal totalVolume = batchStockService.calculateTotalVolume(batchStock);
 

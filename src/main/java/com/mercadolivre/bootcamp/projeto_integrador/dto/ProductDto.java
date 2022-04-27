@@ -12,13 +12,13 @@ import java.util.stream.Collectors;
 @Builder
 @Data
 public class ProductDto {
-    private String id;
+    private Long id;
     private String productName;
     private BigDecimal volume;
     private Float minimumTemperature;
     private Float maxTemperature;
     private Category category;
-    private String salesman_id;
+    private Long salesman_id;
 
     public static ProductDto convert(Product product) {
         return ProductDto.builder()
@@ -28,7 +28,7 @@ public class ProductDto {
                 .minimumTemperature(product.getMinimumTemperature())
                 .maxTemperature(product.getMaxTemperature())
                 .category(product.getCategory())
-                .salesman_id(product.getSalesman().getSalesmanId())
+                .salesman_id(product.getSalesman().getId())
                 .build();
     }
 

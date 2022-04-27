@@ -25,7 +25,7 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public Boolean validateProductDueDate(String productId) {
+    public Boolean validateProductDueDate(Long productId) {
         // TODO: 26/04/22 validate product due date after batchstock endpoints are complete 
         return null;
     }
@@ -66,13 +66,13 @@ public class ProductServiceImpl implements ProductService {
 
     // METHOD TO DELETE PRODUCT
     @Override
-    public void delete(String id) {
+    public void delete(Long id) {
         Product product = productRepository.findById(id).orElseThrow(() -> new InvalidProductException(id));
         productRepository.delete(product);
     }
 
     @Override
-    public Product findByProductId(String id) {
+    public Product findByProductId(Long id) {
         return productRepository.findById(id).orElseThrow(() -> new InvalidProductException(id));
     }
 

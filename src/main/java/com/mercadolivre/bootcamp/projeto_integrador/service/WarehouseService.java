@@ -6,8 +6,8 @@ import com.mercadolivre.bootcamp.projeto_integrador.entity.Warehouse;
 import java.util.List;
 
 public interface WarehouseService {
-    Warehouse findById(String warehouseId);
+    Warehouse findById(Long warehouseId);
     List<Warehouse> findAll();
-    boolean isValidWarehouse(String warehouseId);
+    boolean isValidWarehouse(Long warehouseId);
     Warehouse save(Warehouse wh);
 }

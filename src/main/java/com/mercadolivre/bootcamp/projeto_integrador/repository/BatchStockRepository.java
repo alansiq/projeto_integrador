@@ -7,5 +7,5 @@ import java.util.List;
 
 public interface BatchStockRepository extends JpaRepository<BatchStock, Long> {
 
-    List<BatchStock> findAllByProduct_Id(String productId);
+    List<BatchStock> findAllByProduct_Id(Long productId);
 }

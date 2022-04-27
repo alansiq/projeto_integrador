@@ -50,10 +50,10 @@ public class SalesmanServiceTest {
     public void shouldFindSalesmanById (){
         // arrange
         Salesman salesman = Salesman.builder()
-                .salesmanId("1").build();
+                .id(1L).build();
         // act
         Mockito.when(repository.findById(any())).thenReturn(Optional.of(salesman));
-        Salesman result = service.findSalesmanById("1");
+        Salesman result = service.findSalesmanById(1L);
 
         // assert
         assertEquals(salesman, result);
@@ -68,7 +68,7 @@ public class SalesmanServiceTest {
         Mockito.when(repository.findById(any())).thenReturn(Optional.empty());
 
         // assert
-        assertThrows(SalesmanDoesNotExistException.class, ()->service.findSalesmanById("id"));
+        assertThrows(SalesmanDoesNotExistException.class, ()->service.findSalesmanById(1L));
     }
 
     @Test
@@ -103,14 +103,14 @@ public class SalesmanServiceTest {
     @DisplayName("It should remove a salesman by his id.")
     public void shouldRemoveSalesman(){
         // arrange
-        Salesman salesman = Salesman.builder().salesmanId("id").build();
+        Salesman salesman = Salesman.builder().id(1L).build();
 
         // act
         Mockito.when(repository.findById(any())).thenReturn(Optional.of(salesman));
         doNothing().when(repository).delete(any());
 
         // assert
-        assertDoesNotThrow(()-> service.removeSalesman("id"));
+        assertDoesNotThrow(()-> service.removeSalesman(1L));
     }
 
     @Test
@@ -122,7 +122,7 @@ public class SalesmanServiceTest {
         Mockito.when(repository.findById(any())).thenReturn(Optional.empty());
 
         // assert
-        assertThrows(SalesmanDoesNotExistException.class, ()->service.findSalesmanById("id"));
+        assertThrows(SalesmanDoesNotExistException.class, ()->service.findSalesmanById(1L));
     }
 
     @Test
@@ -134,7 +134,7 @@ public class SalesmanServiceTest {
         // act
         Mockito.when(repository.save(any())).thenReturn(salesman);
         Mockito.when(repository.findById(any())).thenReturn(Optional.of(salesman));
-        Salesman result = service.updateSalesman("id", salesman);
+        Salesman result = service.updateSalesman(1L, salesman);
 
         // assert
         assertEquals(salesman, result);

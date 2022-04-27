@@ -13,7 +13,7 @@ import java.time.LocalDate;
 public class PurchaseOrder {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long purchaseOrderNumber;
     private StatusOrder statusOrder;
     @ManyToOne

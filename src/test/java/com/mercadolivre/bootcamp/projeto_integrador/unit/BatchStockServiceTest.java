@@ -34,10 +34,10 @@ public class BatchStockServiceTest {
     private BatchStockServiceImpl service;
 
     Long id = 1L;
-    String productId = "1L";
-    BatchStock batchStock1 = BatchStock.builder().batchNumber(1L).product(Product.builder().id("1L").build()).build();
-    BatchStock batchStock2 = BatchStock.builder().batchNumber(2L).product(Product.builder().id("1L").build()).build();
-    BatchStock batchStock3 = BatchStock.builder().batchNumber(3L).product(Product.builder().id("1L").build()).build();
+    Long productId = 1L;
+    BatchStock batchStock1 = BatchStock.builder().batchNumber(1L).product(Product.builder().id(productId).build()).build();
+    BatchStock batchStock2 = BatchStock.builder().batchNumber(2L).product(Product.builder().id(productId).build()).build();
+    BatchStock batchStock3 = BatchStock.builder().batchNumber(3L).product(Product.builder().id(productId).build()).build();
     List<BatchStock> batchStockList = Arrays.asList(batchStock1,batchStock2,batchStock3);
 
 
@@ -131,7 +131,7 @@ public class BatchStockServiceTest {
     @DisplayName("It should do list all BatchStocks by product id.")
     public void shouldListBatchStockByProductId(){
 
-        Mockito.when(repository.findAllByProduct_Id(anyString())).thenReturn(batchStockList);
+        Mockito.when(repository.findAllByProduct_Id(anyLong())).thenReturn(batchStockList);
 
         List<BatchStock> result = service.findAllByProductId(productId);
 
@@ -142,6 +142,6 @@ public class BatchStockServiceTest {
     @Test
     @DisplayName("It should not do list all BatchStocks by product id when it not exists.")
     public void shouldNotListBatchStockByProductIdWhenProductIdNotExists(){
-        assertThrows(InvalidProductException.class, () -> service.findAllByProductId(anyString()));
+        assertThrows(InvalidProductException.class, () -> service.findAllByProductId(anyLong()));
     }
 }

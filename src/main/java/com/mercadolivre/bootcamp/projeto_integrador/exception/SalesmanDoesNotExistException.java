@@ -5,7 +5,7 @@ import org.springframework.http.HttpStatus;
 import java.time.ZonedDateTime;
 
 public class SalesmanDoesNotExistException extends BaseException {
-    public SalesmanDoesNotExistException(String salesmanId) {
+    public SalesmanDoesNotExistException(Long salesmanId) {
         super("Não foi possível encontrar um vendedor com o id: " + salesmanId, HttpStatus.NOT_FOUND, ZonedDateTime.now());
     }
 }

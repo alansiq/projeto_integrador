@@ -5,7 +5,7 @@ import org.springframework.http.HttpStatus;
 import java.time.ZonedDateTime;
 
 public class WarehouseDoesntExistException extends BaseException{
-    public WarehouseDoesntExistException(String warehouseId) {
+    public WarehouseDoesntExistException(Long warehouseId) {
         super("Warehouse with id" + warehouseId + " does not exist.", HttpStatus.CONFLICT, ZonedDateTime.now());
     }
 }

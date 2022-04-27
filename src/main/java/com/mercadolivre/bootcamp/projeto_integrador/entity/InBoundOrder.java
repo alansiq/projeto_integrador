@@ -20,7 +20,7 @@ public class InBoundOrder {
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private BatchStock batchStock;
     //Todo: JoinColumn @ManyToOne
-    private String representativeId;
+    private Long representativeId;
     @ManyToOne
     @JoinColumn(name = "section_id")
     private Section section;

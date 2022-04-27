@@ -53,7 +53,7 @@ public class RepresentativeServiceTest {
 
         //Act
         Mockito.when(representativeRepository.findById(any())).thenReturn(Optional.of(representative));
-        Representative result = representativeService.getRepresentativeById("R01");
+        Representative result = representativeService.getRepresentativeById(1L);
 
         //Assert
         assertEquals(representative, result);
@@ -69,7 +69,7 @@ public class RepresentativeServiceTest {
         Mockito.when(representativeRepository.findById(any())).thenReturn(Optional.empty());
 
         //Assert
-        assertThrows(RepresentativeNotFoundException.class, () -> representativeService.getRepresentativeById("A"));
+        assertThrows(RepresentativeNotFoundException.class, () -> representativeService.getRepresentativeById(1L));
 
     }
 
@@ -97,7 +97,7 @@ public class RepresentativeServiceTest {
         //Act
         Mockito.when(representativeRepository.save(any())).thenReturn(representative);
         Mockito.when(representativeRepository.findById(any())).thenReturn(Optional.of(representative));
-        Representative result = representativeService.updateRepresentative("R01", representative);
+        Representative result = representativeService.updateRepresentative(1L, representative);
 
         //Assert
         assertEquals(representative, result);
@@ -114,7 +114,7 @@ public class RepresentativeServiceTest {
         doNothing().when(representativeRepository).delete(any());
 
         //Assert
-        assertDoesNotThrow(() -> representativeService.deleteRepresentative("R02"));
+        assertDoesNotThrow(() -> representativeService.deleteRepresentative(1L));
 
     }
 
@@ -128,18 +128,18 @@ public class RepresentativeServiceTest {
         Mockito.when(representativeRepository.findById(any())).thenReturn(Optional.empty());
 
         //Assert
-        assertThrows(RepresentativeNotFoundException.class, () -> representativeService.deleteRepresentative("A"));
+        assertThrows(RepresentativeNotFoundException.class, () -> representativeService.deleteRepresentative(1L));
     }
 
     @Test
     @DisplayName("It should inform if a representative is associated with section")
     public void shouldInformIfRepresentativeIsAssociatedWithSection() {
         //Arrange tests
-        Representative representative = Representative.builder().sectionId("1").build();
+        Representative representative = Representative.builder().sectionId(1L).build();
 
         //Act
         Mockito.when(representativeRepository.findById(any())).thenReturn(Optional.of(representative));
-        Boolean result = representativeService.isRepresentativeAssociatedWithSection("R01", "1");
+        boolean result = representativeService.isRepresentativeAssociatedWithSection(1L, 1L);
 
         //Assert
         assertTrue(result);
@@ -149,11 +149,11 @@ public class RepresentativeServiceTest {
     @DisplayName("It should inform if a representative is not associated with section")
     public void shouldInformIfRepresentativeIsNotAssociatedWithSection() {
         //Arrange tests
-        Representative representative = Representative.builder().sectionId("1").build();
+        Representative representative = Representative.builder().sectionId(1L).build();
 
         //Act
         Mockito.when(representativeRepository.findById(any())).thenReturn(Optional.of(representative));
-        Boolean result = representativeService.isRepresentativeAssociatedWithSection("R01", "2");
+        boolean result = representativeService.isRepresentativeAssociatedWithSection(1L, 2L);
 
         //Assert
         assertFalse(result);

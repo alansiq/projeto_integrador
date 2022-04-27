@@ -9,17 +9,16 @@ import com.mercadolivre.bootcamp.projeto_integrador.repository.WarehouseReposito
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
 @AllArgsConstructor
 @Service
 public class WarehouseServiceImpl implements WarehouseService{
-    private WarehouseRepository warehouseRepository;
+    private final WarehouseRepository warehouseRepository;
 
     @Override
-    public Warehouse findById(String warehouseId) {
+    public Warehouse findById(Long warehouseId) {
         Optional<Warehouse> wh = warehouseRepository.findById(warehouseId);
         if(wh.isEmpty()){
             throw new WarehouseDoesntExistException(warehouseId);
@@ -36,7 +35,7 @@ public class WarehouseServiceImpl implements WarehouseService{
     }
 
     @Override
-    public boolean isValidWarehouse(String warehouseId) {
+    public boolean isValidWarehouse(Long warehouseId) {
         Optional<Warehouse> wh = warehouseRepository.findById(warehouseId);
         if(wh.isEmpty()){
             throw new WarehouseDoesntExistException(warehouseId);

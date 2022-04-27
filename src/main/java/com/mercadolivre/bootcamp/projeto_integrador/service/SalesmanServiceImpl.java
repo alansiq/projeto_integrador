@@ -25,7 +25,7 @@ public class SalesmanServiceImpl implements SalesmanService {
     }
 
     @Override
-    public Salesman findSalesmanById(String salesmanId) {
+    public Salesman findSalesmanById(Long salesmanId) {
         return salesmanRepository.findById(salesmanId).
                 orElseThrow(() -> new SalesmanDoesNotExistException(salesmanId));
     }
@@ -38,12 +38,12 @@ public class SalesmanServiceImpl implements SalesmanService {
     }
 
     @Override
-    public void removeSalesman(String salesmanId) {
+    public void removeSalesman(Long salesmanId) {
         salesmanRepository.delete(findSalesmanById(salesmanId));
     }
 
     @Override
-    public Salesman updateSalesman(String salesmanId, Salesman salesman){
+    public Salesman updateSalesman(Long salesmanId, Salesman salesman){
         Salesman updatedSalesman = findSalesmanById(salesmanId);
         updatedSalesman.setFullName(salesman.getFullName());
         return salesmanRepository.save(updatedSalesman);

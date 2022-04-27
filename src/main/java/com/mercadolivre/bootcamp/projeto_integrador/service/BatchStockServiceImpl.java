@@ -52,6 +52,13 @@ public class BatchStockServiceImpl implements BatchStockService{
     }
 
     @Override
+    public List<BatchStock> findAllByProductId(Long id) {
+        List<BatchStock> batchStockList = repository.findAllByProduct_Id(id);
+        if(batchStockList.isEmpty()) throw new InvalidProductException(id);
+        return batchStockList;
+    }
+
+    @Override
     public void remove(Long id) {
         BatchStock batchStock = findById(id);
         repository.delete(batchStock);

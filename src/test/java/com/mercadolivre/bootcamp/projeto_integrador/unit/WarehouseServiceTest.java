@@ -3,7 +3,6 @@ package com.mercadolivre.bootcamp.projeto_integrador.unit;
 import com.mercadolivre.bootcamp.projeto_integrador.entity.Warehouse;
 import com.mercadolivre.bootcamp.projeto_integrador.repository.WarehouseRepository;
 import com.mercadolivre.bootcamp.projeto_integrador.service.WarehouseServiceImpl;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -11,15 +10,12 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import javax.swing.text.html.Option;
-import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.ArgumentMatchers.anyString;
+import static org.mockito.ArgumentMatchers.*;
 
 @ExtendWith(MockitoExtension.class)
 public class WarehouseServiceTest {
@@ -30,7 +26,7 @@ public class WarehouseServiceTest {
     WarehouseServiceImpl warehouseService;
 
     //Arrange
-    String warehouseId = "teste";
+    Long warehouseId = 1l;
     Warehouse warehouse = Warehouse.builder().warehouseId(warehouseId).build();
     public LinkedList<Warehouse> warehouseList = new LinkedList<>();
 
@@ -56,7 +52,7 @@ public class WarehouseServiceTest {
     @Test
     void shouldFindWarehouseById(){
         //Act
-        Mockito.when(wareHouseRepository.findById(anyString())).thenReturn(optionalWarehouse);
+        Mockito.when(wareHouseRepository.findById(anyLong())).thenReturn(optionalWarehouse);
         Warehouse wh = warehouseService.findById(warehouseId);
 
         //assert
@@ -68,7 +64,7 @@ public class WarehouseServiceTest {
     void shouldValidWarehouse(){
 
         //Act
-        Mockito.when(wareHouseRepository.findById(anyString())).thenReturn(optionalWarehouse);
+        Mockito.when(wareHouseRepository.findById(anyLong())).thenReturn(optionalWarehouse);
         boolean test = warehouseService.isValidWarehouse(warehouseId);
 
         assertTrue(test);

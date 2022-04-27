@@ -16,7 +16,7 @@ import javax.persistence.Id;
 public class Warehouse {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private String warehouseId;
+    private Long warehouseId;
     private String name;
 
 

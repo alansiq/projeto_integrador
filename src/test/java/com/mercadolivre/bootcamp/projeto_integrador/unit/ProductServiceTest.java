@@ -37,7 +37,7 @@ public class ProductServiceTest {
     @DisplayName("it should validate that a product due date is valid")
     public void shouldValidateProductDueDate() {
         // TODO: 26/04/22 - Create test after finishing BatchStockService
-        productService.validateProductDueDate("5");
+        productService.validateProductDueDate(5L);
         assertTrue(true);
     }
 
@@ -54,12 +54,12 @@ public class ProductServiceTest {
     public void shouldFindProductById() {
         // Arrange tests
         Product product = Product.builder()
-                                .id("Id")
+                                .id(5L)
                                 .build();
 
         // Execute actions
         Mockito.when(productRepository.findById(any())).thenReturn(Optional.of(product));
-        Product result = productService.findByProductId("Id");
+        Product result = productService.findByProductId(5L);
 
         // Assert result
         assertEquals(product, result);
@@ -195,12 +195,12 @@ public class ProductServiceTest {
                 .category(Category.FRESH)
                 .maxTemperature(1F)
                 .minimumTemperature(0F)
-                .salesman_id("Salesman ID")
+                .salesman_id(1L)
                 .volume(BigDecimal.valueOf(10))
                 .build();
 
         Product product = Product.builder()
-                .id("id")
+                .id(5L)
                 .productName("Product")
                 .category(Category.FRESH)
                 .maxTemperature(1F)
@@ -219,13 +219,13 @@ public class ProductServiceTest {
     @DisplayName("it should delete an existing product")
     public void shouldDeleteProduct() {
         // Arrange tests
-        Product product = Product.builder().id("id").build();
+        Product product = Product.builder().id(5L).build();
         // Execute action
         Mockito.when(productRepository.findById(any())).thenReturn(Optional.of(product));
         doNothing().when(productRepository).delete(any());
         // Assert result
         assertDoesNotThrow(() -> {
-            productService.delete("id");
+            productService.delete(5L);
         });
     }
 
@@ -244,8 +244,8 @@ public class ProductServiceTest {
     @DisplayName("it should update an existing product")
     public void shouldUpdateExistingProduct() {
         // Arrange tests
-        Product product         = Product.builder().id("1").productName("Test").build();
-        Product productResponse         = Product.builder().id("1").productName("Test2").build();
+        Product product         = Product.builder().id(5L).productName("Test").build();
+        Product productResponse         = Product.builder().id(5L).productName("Test2").build();
 
         // Execute action
         Mockito.when(productRepository.findById(any())).thenReturn(Optional.of(product));

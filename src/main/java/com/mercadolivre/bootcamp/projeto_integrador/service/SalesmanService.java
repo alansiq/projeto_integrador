@@ -7,8 +7,8 @@ import java.util.List;
 
 public interface SalesmanService {
         Salesman createSalesman(Salesman salesman);
-        Salesman findSalesmanById(String salesmanId);
+        Salesman findSalesmanById(Long salesmanId);
         List<Salesman> listSalesman();
-        public Salesman updateSalesman(String salesmanId, Salesman salesman);
-        void removeSalesman(String salesmanId);
+        public Salesman updateSalesman(Long salesmanId, Salesman salesman);
+        void removeSalesman(Long salesmanId);
 }

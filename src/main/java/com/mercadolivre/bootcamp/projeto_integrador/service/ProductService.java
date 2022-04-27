@@ -8,12 +8,12 @@ import java.util.List;
 
 public interface ProductService {
     Boolean availableStockQuantity(Integer orderProductQuantity);
-    Boolean validateProductDueDate(String productId);
+    Boolean validateProductDueDate(Long productId);
 
     Product create(NewProductDto newProductDto);
     Product update (Product receivedProduct);
-    void delete(String id);
-    Product findByProductId(String id);
+    void delete(Long id);
+    Product findByProductId(Long id);
     Product findByProductName(String productName);
     List<Product> findAllByProductName(String productName);
     List<Product> findAllByCategory(Category category);

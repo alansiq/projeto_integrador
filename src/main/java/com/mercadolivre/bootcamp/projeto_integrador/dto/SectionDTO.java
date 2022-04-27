@@ -8,6 +8,6 @@ import lombok.*;
 @Getter
 @Setter
 public class SectionDTO {
-    String sectionId;
-    String warehouseId;
+    Long sectionId;
+    Long warehouseId;
 }
