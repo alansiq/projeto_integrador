@@ -4,7 +4,6 @@ import com.mercadolivre.bootcamp.projeto_integrador.dto.NewBuyerDTO;
 import com.mercadolivre.bootcamp.projeto_integrador.entity.Buyer;
 import com.mercadolivre.bootcamp.projeto_integrador.exception.buyerExceptions.BuyerIdNotFoundException;
 import com.mercadolivre.bootcamp.projeto_integrador.exception.buyerExceptions.BuyerListEmptyException;
-import com.mercadolivre.bootcamp.projeto_integrador.exception.generics.EmptyListException;
 import com.mercadolivre.bootcamp.projeto_integrador.repository.BuyerRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -49,7 +48,7 @@ public class BuyerServiceImpl implements BuyerService{
     @Override
     public List<Buyer> findAll() {
         List<Buyer> buyerList = buyerRepository.findAll();
-        if (buyerList.isEmpty()) throw new EmptyListException();
+        if (buyerList.isEmpty()) throw new BuyerListEmptyException();
         return buyerList;
     }
 

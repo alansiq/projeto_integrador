@@ -6,11 +6,11 @@ import java.math.BigDecimal;
 import java.util.List;
 
 public interface BatchStockService {
-    BigDecimal calculateTotalVolume(BatchStock batchStock);
     BatchStock create(BatchStock batchStock);
-    List<BatchStock> listAll();
+    List<BatchStock> findAll();
     BatchStock findById(Long id);
-    BatchStock update(BatchStock batchStock);
     List<BatchStock> findAllByProductId(String id);
+    BatchStock update(BatchStock batchStock);
     void remove(Long id);
+    BigDecimal calculateTotalVolume(BatchStock batchStock);
 }
