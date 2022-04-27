@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface PurchaseOrderService {
     PurchaseOrder create(PurchaseOrder purchaseOrder);
-    List<PurchaseOrder> list();
+    List<PurchaseOrder> listAll();
     PurchaseOrder findById(Long id);
     PurchaseOrder update(PurchaseOrder purchaseOrder);
     void remove(Long id);

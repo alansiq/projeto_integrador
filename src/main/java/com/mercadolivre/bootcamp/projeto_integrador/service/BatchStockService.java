@@ -8,7 +8,7 @@ import java.util.List;
 public interface BatchStockService {
     BigDecimal calculateTotalVolume(BatchStock batchStock);
     BatchStock create(BatchStock batchStock);
-    List<BatchStock> list();
+    List<BatchStock> listAll();
     BatchStock findById(Long id);
     BatchStock update(BatchStock batchStock);
     List<BatchStock> findAllByProductId(String id);

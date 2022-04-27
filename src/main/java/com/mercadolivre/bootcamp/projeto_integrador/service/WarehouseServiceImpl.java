@@ -4,6 +4,7 @@ package com.mercadolivre.bootcamp.projeto_integrador.service;
 import com.mercadolivre.bootcamp.projeto_integrador.entity.Warehouse;
 import com.mercadolivre.bootcamp.projeto_integrador.exception.NoWarehouseCreatedException;
 import com.mercadolivre.bootcamp.projeto_integrador.exception.WarehouseDoesntExistException;
+import com.mercadolivre.bootcamp.projeto_integrador.exception.generics.EmptyListException;
 import com.mercadolivre.bootcamp.projeto_integrador.repository.WarehouseRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -29,11 +30,9 @@ public class WarehouseServiceImpl implements WarehouseService{
 
     @Override
     public List<Warehouse> findAll() {
-        List<Warehouse> warehouses = warehouseRepository.findAll();
-        if(warehouses.isEmpty()){
-            throw new NoWarehouseCreatedException();
-        }
-        return warehouses;
+        List<Warehouse> list = warehouseRepository.findAll();
+        if(list.isEmpty()) throw new EmptyListException();
+        return list;
     }
 
     @Override

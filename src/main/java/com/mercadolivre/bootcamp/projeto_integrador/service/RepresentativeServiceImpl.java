@@ -2,6 +2,7 @@ package com.mercadolivre.bootcamp.projeto_integrador.service;
 
 import com.mercadolivre.bootcamp.projeto_integrador.entity.Representative;
 import com.mercadolivre.bootcamp.projeto_integrador.exception.RepresentativeNotFoundException;
+import com.mercadolivre.bootcamp.projeto_integrador.exception.generics.EmptyListException;
 import com.mercadolivre.bootcamp.projeto_integrador.repository.RepresentativeRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -19,8 +20,9 @@ public class RepresentativeServiceImpl implements RepresentativeService {
 
     @Override
     public List<Representative> getAllRepresentatives() {
-
-        return representativeRepository.findAll();
+        List<Representative> list = representativeRepository.findAll();
+        if(list.isEmpty()) throw new EmptyListException();
+        return list;
 
     }
 

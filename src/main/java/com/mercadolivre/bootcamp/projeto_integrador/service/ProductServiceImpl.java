@@ -4,6 +4,7 @@ import com.mercadolivre.bootcamp.projeto_integrador.dto.NewProductDto;
 import com.mercadolivre.bootcamp.projeto_integrador.entity.Category;
 import com.mercadolivre.bootcamp.projeto_integrador.entity.Product;
 import com.mercadolivre.bootcamp.projeto_integrador.exception.InvalidProductException;
+import com.mercadolivre.bootcamp.projeto_integrador.exception.generics.EmptyListException;
 import com.mercadolivre.bootcamp.projeto_integrador.repository.ProductRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -105,8 +106,8 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public List<Product> findAll() {
-        List<Product> productList = productRepository.findAll();
-        if (productList.isEmpty()) throw new InvalidProductException("Empty");
-        return productList;
+        List<Product> list = productRepository.findAll();
+        if(list.isEmpty()) throw new EmptyListException();
+        return list;
     }
 }

@@ -4,6 +4,7 @@ import com.mercadolivre.bootcamp.projeto_integrador.dto.NewSectionDTO;
 import com.mercadolivre.bootcamp.projeto_integrador.entity.Category;
 import com.mercadolivre.bootcamp.projeto_integrador.entity.Section;
 import com.mercadolivre.bootcamp.projeto_integrador.exception.SectionNotFound;
+import com.mercadolivre.bootcamp.projeto_integrador.exception.generics.EmptyListException;
 import com.mercadolivre.bootcamp.projeto_integrador.repository.SectionRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.dao.EmptyResultDataAccessException;
@@ -27,8 +28,9 @@ public class SectionServiceImpl implements SectionService {
 
     @Override
     public List<Section> getAllSection() {
-        List<Section> listSections = sectionRepository.findAll();
-        return listSections;
+        List<Section> list = sectionRepository.findAll();
+        if(list.isEmpty()) throw new EmptyListException();
+        return list;
     }
 
     @Override
