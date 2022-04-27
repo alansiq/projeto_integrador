@@ -1,6 +1,7 @@
 package com.mercadolivre.bootcamp.projeto_integrador.service;
 
 import com.mercadolivre.bootcamp.projeto_integrador.entity.BatchStock;
+import com.mercadolivre.bootcamp.projeto_integrador.exception.InvalidProductException;
 import com.mercadolivre.bootcamp.projeto_integrador.exception.generics.EmptyListException;
 import com.mercadolivre.bootcamp.projeto_integrador.exception.generics.IdNotFoundException;
 import com.mercadolivre.bootcamp.projeto_integrador.repository.BatchStockRepository;
@@ -34,7 +35,7 @@ public class BatchStockServiceImpl implements BatchStockService{
     }
 
     @Override
-    public List<BatchStock> findAllByProductId(String id) {
+    public List<BatchStock> findAllByProductId(Long id) {
         List<BatchStock> batchStockList = repository.findAllByProduct_Id(id);
         if(batchStockList.isEmpty()) throw new EmptyListException();
         return batchStockList;
@@ -49,13 +50,6 @@ public class BatchStockServiceImpl implements BatchStockService{
         updatedBatchStock.setManufacturingDate(batchStock.getManufacturingDate());
         updatedBatchStock.setManufacturingTime(batchStock.getManufacturingTime());
         return repository.save(batchStock);
-    }
-
-    @Override
-    public List<BatchStock> findAllByProductId(Long id) {
-        List<BatchStock> batchStockList = repository.findAllByProduct_Id(id);
-        if(batchStockList.isEmpty()) throw new InvalidProductException(id);
-        return batchStockList;
     }
 
     @Override
