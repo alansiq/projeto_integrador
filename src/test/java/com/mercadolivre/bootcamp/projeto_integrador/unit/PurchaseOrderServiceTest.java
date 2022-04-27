@@ -61,7 +61,7 @@ public class PurchaseOrderServiceTest {
 
         Mockito.when(repository.findAll()).thenReturn(purchaseOrderList);
 
-        List<PurchaseOrder> result = service.list();
+        List<PurchaseOrder> result = service.listAll();
 
         assertEquals(purchaseOrderList, result);
         assertEquals(3, result.size());
