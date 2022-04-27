@@ -5,9 +5,9 @@ import org.springframework.http.HttpStatus;
 
 import java.time.ZonedDateTime;
 
-public class EmptyListException extends BaseException {
+public class IdNotFoundException extends BaseException {
 
-    public EmptyListException() {
-        super("A lista está vazia.", HttpStatus.NOT_FOUND, ZonedDateTime.now());
+    public IdNotFoundException(Long id) {
+        super("O Id: " + id + " não foi encontrado.", HttpStatus.NOT_FOUND, ZonedDateTime.now());
     }
 }
