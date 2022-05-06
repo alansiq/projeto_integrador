@@ -4,6 +4,7 @@ package com.mercadolivre.bootcamp.projeto_integrador.service;
 import com.mercadolivre.bootcamp.projeto_integrador.entity.Warehouse;
 import com.mercadolivre.bootcamp.projeto_integrador.exception.generics.EmptyListException;
 import com.mercadolivre.bootcamp.projeto_integrador.exception.generics.IdNotFoundException;
+import com.mercadolivre.bootcamp.projeto_integrador.exception.warehouse.EmptyListWarehouseCityException;
 import com.mercadolivre.bootcamp.projeto_integrador.repository.WarehouseRepository;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
@@ -54,5 +55,13 @@ public class WarehouseServiceImpl implements WarehouseService{
         Optional<Warehouse> wh = warehouseRepository.findById(warehouseId);
         warehouseRepository.delete(wh.get());
     }
+
+    @Override
+    public List<Warehouse> findAllByCity(String city) {
+        List<Warehouse> warehouses = warehouseRepository.getAllByAddressCity(city);
+        if(warehouses.isEmpty()) throw new EmptyListWarehouseCityException(city);
+        return warehouses;
+    }
+
 
 }

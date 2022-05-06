@@ -11,4 +11,5 @@ public interface WarehouseService {
     boolean isValidWarehouse(Long warehouseId);
     Warehouse save(Warehouse wh);
     void delete(Long warehouseId);
+    List<Warehouse> findAllByCity(String city);
 }

@@ -31,8 +31,8 @@ INSERT INTO Product (product_name, volume, minimum_temperature, max_temperature,
 INSERT INTO Product (product_name, volume, minimum_temperature, max_temperature, category, salesman_id) VALUES ('Peito de Peru', 100, 10, 15,'FRESH',7);
 INSERT INTO Product (product_name, volume, minimum_temperature, max_temperature, category, salesman_id) VALUES ('Mortadela', 100, 10, 15,'FRESH',7);
 
-INSERT INTO warehouse (name) VALUES ('Osasco');
-INSERT INTO warehouse (name) VALUES ('Bahia');
+INSERT INTO warehouse (name, logradouro, numero, complemento, cep, city, estado) VALUES ('Osasco', 'Rua Osasco', '1550', 'S/N', '0990-0123', 'Osasco', 'São Paulo');
+INSERT INTO warehouse (name, logradouro, numero, complemento, cep, city, estado) VALUES ('Bahia', 'Rua Bahia', '5478', 'S/N', '5326-9076', 'Bahia', 'Bahia');
 
 INSERT INTO section (capacity, category, current_temperature, warehouse_id) VALUES (500, 'FRESH', 5, 1);
 INSERT INTO section (capacity, category, current_temperature, warehouse_id) VALUES (500, 'FROZEN_FOOD', -21, 1);

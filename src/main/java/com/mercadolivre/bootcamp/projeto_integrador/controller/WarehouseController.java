@@ -9,6 +9,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 
 @AllArgsConstructor
 @RestController
@@ -40,5 +42,11 @@ public class WarehouseController {
     public ResponseEntity getWarehouse(@RequestParam Long warehouseId) {
         Warehouse wh = warehouseService.findById(warehouseId);
         return ResponseEntity.ok().body(wh);
+    }
+
+    @GetMapping("/list")
+    public ResponseEntity<List<Warehouse>> getAllWarehouseByCity(@RequestParam String city){
+        List<Warehouse> warehouseList = warehouseService.findAllByCity(city);
+        return  ResponseEntity.status(HttpStatus.OK).body(warehouseList);
     }
 }
