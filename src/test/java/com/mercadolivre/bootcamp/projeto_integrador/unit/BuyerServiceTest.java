@@ -43,7 +43,7 @@ public class BuyerServiceTest {
         Mockito.when(BuyerRepository.save(any())).thenReturn(buyer);
 
         Buyer buyerAdd =
-                BuyerService.addBuyer(buyerDTO);
+                BuyerService.addBuyer(buyer);
 
         //Assert
         assertEquals(buyer, buyerAdd);

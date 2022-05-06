@@ -15,6 +15,7 @@ import java.util.stream.Collectors;
 @NoArgsConstructor
 public class NewBuyerDTO {
     private String fullName;
+    private String cep;
 
     public static Buyer convert(NewBuyerDTO newBuyerDTO) {
         return Buyer.builder().fullName(newBuyerDTO.getFullName()).build();

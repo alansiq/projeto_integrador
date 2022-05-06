@@ -6,7 +6,7 @@ import com.mercadolivre.bootcamp.projeto_integrador.entity.Buyer;
 import java.util.List;
 
 public interface BuyerService {
-    Buyer addBuyer(NewBuyerDTO newBuyerDTO);
+    Buyer addBuyer(Buyer buyer);
     List<Buyer> getAllBuyer();
     List<Buyer> findAll();
     Buyer findById(Long buyerId);
