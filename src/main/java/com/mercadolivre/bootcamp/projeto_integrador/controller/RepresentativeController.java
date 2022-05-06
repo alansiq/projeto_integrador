@@ -16,6 +16,9 @@ import java.util.List;
 @AllArgsConstructor
 @RequestMapping(RepresentativeController.baseUri)
 public class RepresentativeController {
+
+    //Requisito 06 - Marianna Rodrigues (Realizado no começo do projeto)
+
     private final RepresentativeService representativeService;
 
     public static final String baseUri =  "/api/v1/fresh-products/representative";
